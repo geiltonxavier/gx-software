@@ -274,6 +274,37 @@
     html{scroll-behavior:auto}
     .rv{opacity:1;transform:none}
   }
+  /* formulário de contato */
+  .form-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,54px);align-items:start}
+  .campo{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+  .campo label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--fg-3)}
+  .campo label .opc{text-transform:none;letter-spacing:0}
+  .campo input,.campo textarea{font-family:var(--sans);font-size:16px;color:var(--fg);
+    background:var(--bg-2);border:1px solid var(--line-2);border-radius:3px;
+    padding:12px 14px;width:100%;min-height:48px;
+    transition:border-color .16s,background .16s}
+  .campo textarea{min-height:152px;resize:vertical;line-height:1.55}
+  .campo input::placeholder,.campo textarea::placeholder{color:var(--fg-3)}
+  .campo input:focus,.campo textarea:focus{outline:2px solid var(--accent);
+    outline-offset:1px;border-color:var(--accent);background:var(--bg-3)}
+  .armadilha{position:absolute;width:1px;height:1px;overflow:hidden;
+    clip-path:inset(50%);white-space:nowrap}
+  .form-acoes{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+  .form-acoes .dica{font-size:13.5px;color:var(--fg-3)}
+  .form-acoes .dica a{color:var(--accent)}
+  .aviso{border:1px solid var(--line-2);border-left:2px solid var(--accent);border-radius:3px;
+    padding:13px 15px;font-size:14.5px;line-height:1.55;margin:18px 0 0}
+  .aviso.ok{border-left-color:var(--ok)}
+  .aviso.erro{border-left-color:#FF9C9C}
+  .depois{list-style:none;margin:0;padding:0;counter-reset:passo}
+  .depois li{position:relative;padding-left:34px;margin-bottom:18px;color:var(--fg-2);font-size:15.5px}
+  .depois li::before{counter-increment:passo;content:counter(passo,decimal-leading-zero);
+    position:absolute;left:0;top:1px;font-family:var(--mono);font-size:12px;color:var(--accent)}
+  .depois li b{display:block;color:var(--fg);font-weight:620;margin-bottom:2px}
+  @media (max-width:860px){
+    .form-grid{grid-template-columns:1fr;gap:34px}
+  }
 </style>
 </head>
 <body>
@@ -631,6 +662,61 @@
   </div>
 </section>
 
+<section id="contato">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="kicker">Contato</p>
+      <h2 class="sec">Conte o que você precisa</h2>
+      <p class="sec-note">Escrevo de volta com uma leitura do problema e um caminho. Se já der para
+        fechar escopo e preço, eu fecho junto.</p>
+    </div>
+
+    <div class="form-grid rv">
+      <form id="form-contato" novalidate>
+        <div class="campo">
+          <label for="f-nome">Seu nome</label>
+          <input id="f-nome" name="nome" type="text" autocomplete="name" required maxlength="120">
+        </div>
+        <div class="campo">
+          <label for="f-email">Seu e-mail</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="200">
+        </div>
+        <div class="campo">
+          <label for="f-assunto">Assunto <span class="opc">(opcional)</span></label>
+          <input id="f-assunto" name="assunto" type="text" maxlength="160">
+        </div>
+        <div class="campo">
+          <label for="f-mensagem">O que você precisa</label>
+          <textarea id="f-mensagem" name="mensagem" required maxlength="5000"
+            placeholder="Sistema, integração, correção ou dúvida. Prazo e faixa de orçamento ajudam."></textarea>
+        </div>
+
+        <div class="armadilha" aria-hidden="true">
+          <label for="f-website">Não preencha este campo</label>
+          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-acoes">
+          <button class="btn primary" type="submit" id="f-enviar">Enviar mensagem</button>
+          <span class="dica">ou <a href="https://wa.me/5511926486761">chama no WhatsApp</a></span>
+        </div>
+
+        <p class="aviso" id="f-retorno" role="status" hidden></p>
+      </form>
+
+      <div>
+        <ol class="depois">
+          <li><b>Leio e respondo</b>Em até 1 dia útil, no e-mail que você deixar.</li>
+          <li><b>Escopo e preço por escrito</b>Antes de qualquer linha de código.</li>
+          <li><b>Um projeto por vez</b>Se a fila estiver cheia, eu digo quando abro vaga.</li>
+        </ol>
+        <p class="sec-note" style="margin-top:26px">Prefere falar agora? O telefone e o e-mail
+          direto estão no rodapé. A empresa emite nota fiscal em todo serviço.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -638,6 +724,7 @@
         <h3>Contato</h3>
         <p><a href="https://wa.me/5511926486761">WhatsApp (11) 92648-6761</a></p>
         <p><a href="mailto:contato@gxsoftware.geiltonxavier.com">contato@gxsoftware.geiltonxavier.com</a></p>
+        <p><a href="#contato">Formulário nesta página</a></p>
         <p><strong style="color:var(--fg)">Taboão da Serra, SP</strong> &middot; atendimento remoto no Brasil</p>
       </div>
       <div>
@@ -748,6 +835,53 @@
         .forEach(function(p){ p.classList.toggle('show', p.dataset.id === t.dataset.target); });
     });
   });
+  /* formulário de contato */
+  var form = document.getElementById('form-contato');
+  if(form){
+    var abertoEm = Date.now();
+    var botao = document.getElementById('f-enviar');
+    var retorno = document.getElementById('f-retorno');
+    var avisar = function(msg, tipo){
+      retorno.textContent = msg;
+      retorno.className = 'aviso ' + tipo;
+      retorno.hidden = false;
+    };
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!form.reportValidity()) return;
+      retorno.hidden = true;
+      botao.disabled = true;
+      var rotulo = botao.textContent;
+      botao.textContent = 'Enviando...';
+      fetch('/api/contato', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({
+          nome: form.nome.value,
+          email: form.email.value,
+          assunto: form.assunto.value,
+          mensagem: form.mensagem.value,
+          website: form.website.value,
+          decorrido: Date.now() - abertoEm
+        })
+      }).then(function(r){
+        return r.json().catch(function(){ return {}; })
+          .then(function(j){ return {ok: r.ok, corpo: j}; });
+      }).then(function(res){
+        if(res.ok && res.corpo.ok){
+          form.reset();
+          avisar('Mensagem enviada. Leio tudo em até 1 dia útil e respondo no e-mail que você deixou.', 'ok');
+        } else {
+          avisar(res.corpo.erro || 'O envio não passou. Use o WhatsApp ou escreva para contato@gxsoftware.geiltonxavier.com.', 'erro');
+        }
+      }).catch(function(){
+        avisar('Falha de conexão. Use o WhatsApp ou escreva para contato@gxsoftware.geiltonxavier.com.', 'erro');
+      }).then(function(){
+        botao.disabled = false;
+        botao.textContent = rotulo;
+      });
+    });
+  }
 })();
 </script>
 </body>
