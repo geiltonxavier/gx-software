@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página não encontrada | GX Software</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --bg:#0A0B0D; --line:#212530; --line-2:#333846;
+    --fg:#EDEEF1; --fg-2:#ADB2BC; --fg-3:#7C828F;
+    --accent:#FF8A3D;
+    --gut:clamp(20px,4vw,44px);
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 var(--gut);width:100%}
+  .topbar{border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;
+    padding-top:13px;padding-bottom:13px;font-size:12.5px}
+  .back{font-family:var(--mono);font-size:12.5px;color:var(--accent);text-decoration:none}
+  .back:hover{text-decoration:underline;text-underline-offset:3px}
+  .topbar .meta{color:var(--fg-3);font-family:var(--mono);margin-left:auto}
+  main{flex:1;display:flex;align-items:center;padding:clamp(48px,8vw,96px) 0}
+  .codigo{font-family:var(--mono);font-size:clamp(56px,13vw,140px);line-height:1;
+    letter-spacing:-.04em;font-weight:700;color:var(--accent);margin:0}
+  h1{margin:20px 0 0;font-size:clamp(22px,3.4vw,34px);line-height:1.12;
+    letter-spacing:-.025em;font-weight:640;max-width:20ch}
+  p{margin:16px 0 0;max-width:52ch;color:var(--fg-2)}
+  .acoes{display:flex;flex-wrap:wrap;gap:11px;margin-top:32px}
+  .btn{display:inline-flex;align-items:center;min-height:48px;padding:0 21px;border-radius:3px;
+    font-size:15px;font-weight:600;text-decoration:none;border:1px solid var(--line-2);
+    color:var(--fg);transition:background .16s,border-color .16s,color .16s}
+  .btn.primary{background:var(--accent);color:#0A0B0D;border-color:var(--accent)}
+  .btn.primary:hover{background:#FFA063;border-color:#FFA063}
+  .btn.ghost:hover{border-color:var(--fg-3)}
+  footer{border-top:1px solid var(--line);padding:22px 0}
+  .legal{font-size:12.5px;color:var(--fg-3);line-height:1.6}
+  .legal b{color:var(--fg-2);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="back" href="/">&larr; GX Software</a>
+    <span class="meta">erro 404</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <p class="codigo">404</p>
+    <h1>Este endereço não existe.</h1>
+    <p>O link pode estar errado, ou a página saiu do ar. Se você chegou aqui por um
+      endereço que eu te mandei, me avise que eu conserto.</p>
+    <div class="acoes">
+      <a class="btn primary" href="/">Voltar para a home</a>
+      <a class="btn ghost" href="https://wa.me/5511926486761">Falar no WhatsApp</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="legal">
+      <b>GX TECNOLOGIA LTDA</b> &middot; CNPJ 26.710.150/0001-82 &middot; nome fantasia GX SOFTWARE
+      &middot; microempresa constituída em 14/12/2016.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
